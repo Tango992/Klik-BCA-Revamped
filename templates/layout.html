@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-bs-theme="" id="webPage">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link href="https://www.bca.co.id/-/media/Feature/Default-BCA/favicon-bca.png" rel="shortcut icon"/>
+        <link href="/static/styles.css" rel="stylesheet">
+        <script src="/static/script.js"></script>
+    </head>
+
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg shadow" data-bs-theme="dark" style="background-color: #0066ae;">
+            <div class="container">
+                <a class="navbar-brand mt-1 mb-1" href="/" style="height: 65px">
+                    <img src="https://www.bca.co.id/-/media/Feature/Header/Header-Logo/logo-bca-white.svg?v=1" alt="Bootstrap" >
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["otp"] %}
+                        <ul class="navbar-nav me-auto mt-1 mb-1">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Info
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/info/account">My Account</a></li>
+                                    <li><a class="dropdown-item" href="/info/balance"">Balance</a></li>
+                                    <li><a class="dropdown-item" href="/info/mutation">Mutation</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Transfer
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/transfer/input">Input</a></li>
+                                    <li><a class="dropdown-item" href="/transfer/list">List</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cardless
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/cardless/withdraw">Withdraw</a></li>
+                                    <li><a class="dropdown-item" href="/cardless/deposit">Deposit</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/cardless/transactions">Transactions</a></li>
+                                </ul>
+                            </li>
+                            {% if not session["state"] %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/admin/password">Change Password</a></li>
+                                </ul>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav ms-auto mt-1 mb-1">
+                            <li class="nav-item"><a class="nav-link me-2" href="/logout">Log Out</a></li>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-1 mb-1">
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link me-2" href="/login">Log In</a></li>
+                    {% endif %}
+                            <li class="nav-item">
+                                <select class="form-select" id="SelectTheme">
+                                    <option selected disabled>Theme</option>
+                                    <option value="auto">Auto</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="light">Light</option>
+                                </select>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <main class="container py-5 text-center">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="mb-3 mx-auto col-sm-3">
+                <header>
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </header>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {% block main %}{% endblock %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+        </main>
+    </body>
+</html>

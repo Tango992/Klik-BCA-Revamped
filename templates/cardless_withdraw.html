@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cardless Withdraw
+{% endblock %}
+
+{% block main %}
+<div class="col-sm-3 mx-auto">
+    <h1 class="mb-4">Cardless Withdraw</h1>
+    <form action="/cardless/withdraw" method="post">
+        <div class="form-floating mb-3">
+            <input autofocus autocomplete="off" class="form-control" id="amount" name="amount" placeholder="amount" type="number" required>
+            <label for="floatingInput">Amount (Rp.)</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input style="letter-spacing:7px" autocomplete="off" class="form-control" id="otpinput" name="otpinput" placeholder="otpinput" type="number" required>
+            <label for="floatingInput">OTP Token</label>
+        </div>
+        <button class="btn btn-primary" type="submit">OK</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<div class="col-sm-3 mx-auto">
+    <form action="/register" method="post">
+        <div class="form-floating mb-3">
+            <input autocomplete="off" autofocus class="form-control" id="fullname" name="fullname" placeholder="Full Name" type="text" required>
+            <label for="floatingInput">Full name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text" required>
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input autocomplete="off" autofocus class="form-control" id="password" name="password" placeholder="Password" type="password" required>
+            <label for="floatingInput">Password</label>
+        </div>
+        <div class="form-floating mb-4">
+            <input autocomplete="off" autofocus class="form-control" id="confirmation" name="confirmation" placeholder="Re-enter password" type="password" required>
+            <label for="floatingInput">Re-enter password</label>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

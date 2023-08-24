@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cardless Transactions
+{% endblock %}
+
+{% block main %}
+<div class="col-sm-9 mx-auto">
+    <h1 class="mb-4">Cardless Transcations</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Pin</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.date | timestamp_convert }}</td>
+                <td style="letter-spacing:4px"><strong>{{ row.pin }}</strong></td>
+                {% if row.cardless_type == "withdraw" %}
+                    <td class="text-danger fw-semibold">{{ row.amount | rp }}</td>
+                {% else %}
+                    <td class="text-success fw-semibold">{{ row.amount | rp }}</td>
+                {% endif %}
+                <td>{{ row.cardless_type | title() }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

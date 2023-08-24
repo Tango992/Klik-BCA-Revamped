@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transfer List
+{% endblock %}
+
+{% block main %}
+    <div class="col-sm-3 mx-auto">
+        <h1 class="mb-4">Transfer List</h1>
+        <form action="/transfer/list" method="post">
+            <div class="mb-3">
+                <select class="form-select mx-auto" name="recipient_id">
+                    <option disabled selected>Recipient</option>
+                    {% for recipient in recipients %}
+                    <option value="{{ recipient.recipient_id }}">{{ recipient.fullname }} - {{ recipient.recipient_id }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-floating mb-3">
+                <input autocomplete="off" class="form-control" id="amount" name="amount" placeholder="amount" type="number" required>
+                <label for="floatingInput">Amount (Rp.)</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input autocomplete="off" class="form-control" id="note" name="note" placeholder="note" type="note">
+                <label for="floatingInput">Note</label>
+            </div>
+            <div class="form-floating mb-4">
+                <input style="letter-spacing:7px" autocomplete="off" class="form-control" id="otpinput" name="otpinput" placeholder="otpinput" type="number" required>
+                <label for="floatingInput">OTP Token</label>
+            </div>
+            <button class="btn btn-primary" type="submit">Transfer</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transfer Input
+{% endblock %}
+
+{% block main %}
+    <div class="col-sm-3 mx-auto">
+        <h1 class="mb-4">Transfer Input</h1>
+        <form action="/transfer/input" method="post">
+            <div class="mb-3">
+                <select class="form-select mx-auto" name="bank_symbol">
+                    <option disabled selected>Bank</option>
+                    {% for bank in banks %}
+                    <option value="{{ bank.symbol }}">{{ bank.name }}</option>
+                    {% endfor %}
+                    {% for greyed_bank in greyed_banks %}
+                    <option disabled value="{{ greyed_bank.symbol }}">{{ greyed_bank.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-floating mb-4">
+                <input autocomplete="off" class="form-control" id="recipient_id" name="recipient_id" placeholder="recipient_id" type="number" inputmode="numeric" required>
+                <label for="floatingInput">Account number</label>
+            </div>
+            <button class="btn btn-primary" type="submit">Add to list</button>
+        </form>
+    </div>
+{% endblock %}

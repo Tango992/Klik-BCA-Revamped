@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Account
+{% endblock %}
+
+{% block main %}
+    <div class="col-sm-4 mx-auto">
+        <h1 class="mb-4">My Account</h1>
+        <dl class="d-flex justify-content-center row">
+            <dt class="col-sm-5 mb-1 text-center">Name :</dt>
+            <dd class="col-sm-5 mb-3 text-center">{{ fullname }}</dd>
+
+            <dt class="col-sm-5 mb-1 text-center">Account Number :</dt>
+            <dd class="col-sm-4 text-center" id="accountId">{{ id }}</dd>
+            <dd class="col-sm-1 mb-3 text-center" id="copyButton">
+                <img src="https://www.svgrepo.com/show/500354/copy.svg" id="copyIcon" alt="Copy button" style="cursor:pointer; height:18px"/>
+            </dd>
+
+            <dt class="col-sm-5 mb-1 text-center">Registered Since :</dt>
+            <dd class="col-sm-5 mb-3 text-center">{{ date }}</dd>
+        </dl>
+
+    </div>
+    <script>
+        document.querySelector('#copyButton').addEventListener('click', () => {
+            let text = document.querySelector("#accountId").textContent;
+            navigator.clipboard.writeText(`${text}`);
+
+            alert(`Account number copied to clipboard!`);
+        });
+    </script>
+{% endblock %}

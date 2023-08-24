@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Mutation
+{% endblock %}
+
+{% block main %}
+    <div class="col-sm-9 mx-auto">
+        <h1 class="mb-4">Mutation</h1>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Type</th>
+                <th scope="col">Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row["date"] | timestamp_convert }}</td>
+                        {% if row["in_out"] == "+" %}
+                            <td class="text-success fw-semibold text-end">{{ row["in_out"] }} {{ row["amount"] | rp }}</td>
+                        {% else %}
+                            <td class="text-danger fw-semibold text-end">{{ row["in_out"] }} {{ row["amount"] | rp }}</td>
+                        {% endif %}
+                        <td>{{ row["type"] }}</td>
+                        <td class="text-start">{{ row["note"] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Balance
+{% endblock %}
+
+{% block main %}
+    <div class="col-sm-4 mx-auto">
+        <h1 class="mb-4">Balance</h1>
+        <dl class="d-flex justify-content-center row">
+            <dt class="col-sm-4 mb-1 text-center">Amount :</dt>
+            <dd class="col-sm-5 mb-3 text-center">{{ balance | rp }}</dd>
+
+            <dt class="col-sm-4 mb-1 text-center">Updated :</dt>
+            <dd class="col-sm-5 mb-3 text-center">{{ date_format }} </dd>
+        </dl>
+    </div>
+{% endblock %}
