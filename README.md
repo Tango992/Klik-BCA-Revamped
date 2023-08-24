@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ```
 export FLASK_APP=application.py
 ```
-5. Run command 'flask run' to open on localhost
+5. Run command `flask run` to open on localhost
 
 ## Current Limitations & Possible Improvements
 Because it's a prototype, users can only transfer between BCA account number registered in the SQL database. The option to transfer to other banks are greyed out, since there are no way to validate the account number.
