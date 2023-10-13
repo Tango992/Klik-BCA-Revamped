@@ -90,7 +90,7 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
-            <div class="mb-3 mx-auto col-sm-3">
+            <div class="mb-3 mx-auto col-lg-3 col-md-5">
                 <header>
                     <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
                         {{ message }}

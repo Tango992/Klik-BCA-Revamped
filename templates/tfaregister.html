@@ -8,7 +8,7 @@
     <div class="col-sm-4 mx-auto">
         <h1 class="mb-4">OTP First Time Setup</h1>
     </div>
-    <div class="col-sm-3 mx-auto">
+    <div class="col-lg-3 col-md-5 mx-auto">
         <h6 class="mb-3">Scan the following barcode using an authenticator app (e.g. Google Authenticator)</h6>
         <p>
             <img src="https://api.qrserver.com/v1/create-qr-code/?data=otpauth://totp/CS50X%20Internet%20Banking:%20{{ fullname }}?secret={{ otpdb }}&amp;size=200x200" alt="QR Code for OTP Registration" title="OTP QR" />
@@ -16,7 +16,7 @@
         <h6>Or using this setup key:</h6>
         <p>{{ otpdb }}</p>
         <form action="/login/tfa" method="post" class="mb-3">
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-4">
                 <input style="letter-spacing:7px" autocomplete="off" autofocus class="form-control" id="floatingInput" name="otpinput" placeholder="Generated OTP" type="number" required>
                 <label for="floatingInput">Generated OTP Token</label>
             </div>
